@@ -1,6 +1,6 @@
 # Git repository
 
-This is an Overleaf integrated project containing both documentatino and source code. 
+This is an Overleaf integrated project containing both documentation and source code. 
 
 Download the project using `git clone`:
 
