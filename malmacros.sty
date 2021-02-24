@@ -1,0 +1,160 @@
+\ProvidesPackage{malmacros}[2018-01-28 v.01 CEF]
+
+%\documentclass[12pt,a4paper]{article}
+
+\usepackage{standalone}
+\usepackage{newclude}
+\usepackage{csquotes}
+
+\usepackage{amsmath}
+
+\usepackage{times}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel} % danish may not be present, if not try "sudo apt install texlive-lang-european" a fmtutil -sys --all
+\usepackage{graphicx}
+\usepackage{caption}
+\usepackage{minted} % preferred package for code
+\usepackage{listings} % alternative to code
+\usepackage{color} 
+\usepackage{xcolor} 
+\usepackage[marginparsep=8pt,left=3cm,right=3cm,top=2.4cm,bottom=2.4cm]{geometry}
+
+\graphicspath{ {./figs/} } 
+
+\hfuzz=15pt
+\vfuzz=12pt
+%\hbadness=10000
+
+% Etc 
+\usepackage{enumitem}
+\newlist{dsdsubexe}{enumerate}{1}
+\setlist[dsdsubexe,1]{label=\textbf{\alph*)}}
+
+\newcommand\rem[1]{}
+\def\bs{\hspace{-\parindent}}
+
+% Titlepage defs
+\newcommand\dsdtitlefont[1]{\uppercase{\sf{#1}}}
+
+\newcommand\dsdoldtitle[4]{
+   \title{
+      \raggedright
+		\dsdtitlefont{\huge #1}\\\dsdtitlefont{\large #2}\\
+		\rule{0pt}{0.9em}\normalsize\bs\rule{22ex}{0.4em}
+   }
+   \author{
+		\includegraphics[width=2cm]{figs/dolphin.png}\\
+		\dsdtitlefont{\normalsize Aarhus University}\\
+      \dsdtitlefont{\normalsize School of Engineerng}\\
+      \dsdtitlefont{\normalsize #3}
+   }
+   \date{\dsdtitlefont{\small #4}}
+   \maketitle
+}
+
+\newcommand\dsdnewtitle[4]{
+		\vspace*{4em}
+      \raggedright
+		\dsdtitlefont{\huge #1}\\\rule{0pt}{1.6em}\dsdtitlefont{\large #2}\\
+		\bs\normalsize\rule{22ex}{0.4em}
+   	\bigbreak
+      \bs\includegraphics[width=2cm]{figs/dolphin.png}\\
+      %\bs\includegraphics[width=4cm]{figs/aulogo_uk_var1_black.eps}\\
+		\dsdtitlefont{\normalsize Aarhus University}\\
+      \dsdtitlefont{\normalsize School of Engineerng}\\
+      \dsdtitlefont{\normalsize #3}
+		\bigbreak
+}
+
+\newcommand\dsdtitle[4]{\dsdoldtitle{#1}{#2}{#3}{#4}}
+
+% Figure, table and source code style and macros
+\def\dirfigs{figs/} % you can override these, also in text, like \def\dirfigs{MyDiretory\}
+\def\dirsrc{src/}
+
+\captionsetup[figure]{font={small,it,sf},labelfont={small,sf,bf},name={Fig.},labelsep=colon}
+\captionsetup[table]{font={small,it,sf},labelfont={small,sf,bf},name={Tab.},labelsep=colon}
+
+% NOTE: do not use underscores in filename, will mess up fig label
+\newcommand\figref[1]{figure \ref{fig:#1}}
+\newcommand\Figref[1]{Figure \ref{fig:#1}}
+\newcommand\tabref[1]{table \ref{tab:#1}}
+\newcommand\Tabref[1]{Tabel \ref{tab:#1}}
+\newcommand\srcref[1]{source code table \ref{src:#1}}
+\newcommand\Srcref[1]{Source code table \ref{src:#1}}
+
+\newcommand\dsdfigbase[4]{
+	\begin{figure}[#4]
+		\centering
+  	 		#1
+		\caption{#3}
+		\label{fig:#2}
+	\end{figure}
+}
+
+\newcommand\dsdfig[4]{
+	\dsdfigbase{\includegraphics[width=#2]{\dirfigs#1}}{#1}{#3}{#4}
+}
+
+\newcommand\dsdtab[4]{
+	\begin{table}[#4]
+		\centering
+			#1
+		\caption{#2}
+		\label{tab:#3}
+	\end{table}
+}
+
+\newcommand\dsdsrc[3]{
+	\begin{table}[#3]
+		\centering
+		  \framebox{
+		    \rule{8pt}{0pt}
+			  \lstinputlisting{\dirsrc#1}
+      }
+		\caption{#2}
+		\label{src:#1}
+	\end{table}
+}
+
+\newminted[pyminted]{python}{
+    breaklines,
+    breakafter=d, 
+    xleftmargin=1cm
+}
+
+\newminted[matminted]{matlab}{
+    breaklines,
+    breakafter=d, 
+    xleftmargin=1cm
+}
+
+\newminted[pyconsole]{pycon}{
+    % linenos, %line numbers
+    breaklines,
+    %fontsize=\footnotesize,
+    frame=lines,
+    tabsize=4,
+    xleftmargin=1cm,
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Misc - Adding the ability to create "TODO's" in the report.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Add bibliography and index to the table of
+% contents
+\usepackage[nottoc]{tocbibind}
+% Add the command \pageref{LastPage} which refers to the
+% page number of the last page
+\usepackage{lastpage}
+% Add todo notes in the margin of the document
+\usepackage[
+%   disable, %turn off todonotes
+  colorinlistoftodos, %enable a coloured square in the list of todos
+  textwidth=\marginparwidth, %set the width of the todonotes
+  textsize=scriptsize, %size of the text in the todonotes
+  ]{todonotes}
+
+\endinput

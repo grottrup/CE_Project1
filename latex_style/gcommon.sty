@@ -1,0 +1,55 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{gcommon}[2021/02/10 My Custom Package]
+
+\RequirePackage{fancyhdr}
+\RequirePackage{lastpage}
+\RequirePackage[dvipsnames]{xcolor}
+\RequirePackage[most]{tcolorbox}
+\RequirePackage{enumitem}
+\RequirePackage{graphicx}
+\RequirePackage[hidelinks]{hyperref}
+\urlstyle{same}
+
+% Mathematics
+%\RequirePackage{amsmath}
+%\RequirePackage{amssymb}
+%\RequirePackage{commath}
+%\RequirePackage{mathrsfs}
+\RequirePackage{amsthm}
+\RequirePackage{mathtools}
+
+\ProcessOptions\relax %executes the code for each option and must be inserted after all the option-handling commands were typed. There's a starred version of this command that will execute the options in the exact order specified by the calling commands. 
+
+%Math result underlining
+\newcommand\result[1]{\underline{\underline{#1}}}
+
+% Vectors
+\RequirePackage{esvect}
+\newcommand{\bdot}{\boldsymbol{\cdot}}
+
+
+% Fonts
+\RequirePackage{fontspec}
+\RequirePackage{sectsty}
+\DeclareOption{Lora}{
+    \setmainfont{Lora}[Ligatures=TeX]
+}
+\DeclareOption{CascadiaMono} {
+    \setmonofont{Cascadia Mono}
+}
+\DeclareOption{CascadiaCode} {
+    \setmonofont{Cascadia Code}[Ligatures=TeX]
+}
+\DeclareOption{Oxygen} {
+    \setsansfont{Oxygen}
+}
+\DeclareOption{SansTitles} {
+    \allsectionsfont{\sffamily}
+}
+
+\ProcessOptions\relax
+
+\definecolor{AUBlue}{RGB}{0,61,115}
+\definecolor{AUDarkBlue}{RGB}{0,37,70}
+
+\endinput

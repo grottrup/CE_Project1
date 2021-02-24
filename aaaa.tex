@@ -1,0 +1,33 @@
+
+
+\documentclass[12pt,a4paper]{article}
+\usepackage{malmacros}
+\usepackage[blankBeforeHeading, html, fencedCode,
+            inlineFootnotes, citations, definitionLists,
+            hashEnumerators, smartEllipses, hybrid, pipeTables]{markdown}
+            
+\newcommand\mymaketitle[1]{
+   \rule{\textwidth}{1.6pt}\vspace*{-\baselineskip}\vspace*{2pt}
+   \rule{\textwidth}{0.4pt}
+   \\   
+   \huge \bf #1\\
+   \vspace{-8pt}
+   \rule{\textwidth}{0.4pt}\vspace*{-\baselineskip}\vspace{3.2pt}
+   \rule{\textwidth}{1.6pt}
+}
+\input{preamble.tex}
+\begin{document}
+
+\title{
+	\mymaketitle{Title}
+}
+\author{Simon Grottrup}
+
+%\listoftodos % Creates the todo-content list
+
+\maketitle
+\section{Notes}
+\markdownInput{setup.md}
+
+\end{document}
+
